@@ -1,10 +1,12 @@
 const express = require("express");
-const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("");
-});
+const usersRouter = require("./router/users");
+const adminRouter = require("./router/admin");
+const app = express();
+app.use("", usersRouter);
+app.use("", adminRouter);
+app.use(express.static("assets"));
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

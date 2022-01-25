@@ -6,7 +6,7 @@ var expressLayouts = require("express-ejs-layouts");
 //   res.send(`Test`);
 // });
 router.get("/", (req, res) => {
-  res.render("pages/frontend/index.ejs");
+  res.render("pages/backend/index.ejs");
 });
 const port = 3000;
 
