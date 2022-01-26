@@ -19,7 +19,12 @@
     <title><%- title %></title>
   </head>
   <body>
-    <%- include('../include/frontend/navbar.ejs') %> <%- body %>
+    <div class="container-fluid">
+      <%- include('../include/frontend/navbar.ejs') %>
+      <div class="container-fluid"><%- body %></div>
+
+      <%- include('../include/frontend/footer.ejs') %>
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

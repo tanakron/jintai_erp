@@ -12,7 +12,7 @@ router.get("", (req, res) => {
 router.get("/login", (req, res) => {
   res.render("pages/frontend/login", { title: "เข้าสู่ระบบ" });
 });
-router.get("", (req, res) => {
+router.get("/register", (req, res) => {
   res.render("pages/frontend/register", { title: "สมัครสมาชิก" });
 });
 module.exports = router;
