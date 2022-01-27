@@ -2,7 +2,7 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 
-var mongoDB = "mongodb://localhost:27017/Emp";
+var mongoDB = "mongodb://localhost:27017/empuser";
 
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
@@ -13,13 +13,13 @@ db.on("error", console.error.bind(console, "Mongodb Connect Error"));
 
 // Create Schema
 var userSchema = mongoose.Schema({
-  name: {
-    type: String,
-  },
-  email: {
+  empid: {
     type: String,
   },
   password: {
+    type: String,
+  },
+  repassword: {
     type: String,
   },
 });

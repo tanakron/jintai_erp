@@ -14,9 +14,9 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
 // Import Router backend.js
-const adminRouter = require("./routers/admin");
+const adminRouter = require("./routes/admin");
 // Import Router frontend.js
-const usersRouter = require("./routers/users");
+const usersRouter = require("./routes/users");
 // Import EJS Layout
 var expressLayouts = require("express-ejs-layouts");
 
@@ -55,7 +55,7 @@ app.set("view engine", "ejs");
 
 app.set("layout", "./layouts/frontend");
 // เรียกใช้งาน Routes
-app.use("/", usersRouter);
+app.use("/users", usersRouter);
 app.use("/admin", adminRouter);
 // Run Express Server ที่ Port 5000
 app.listen(5000, () => {

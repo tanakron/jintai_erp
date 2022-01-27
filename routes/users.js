@@ -66,7 +66,7 @@ router.post(
     //Validation Data
     if (!result.isEmpty()) {
       //Return error to views
-      res.render("/register", {
+      res.render("", {
         errors: errors,
       });
     } else {

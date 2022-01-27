@@ -13,7 +13,16 @@
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">ลงทะเบียนพนักงาน</h1>
           </div>
-          <form class="user" action="/register" method="post">
+
+          <% if(locals.errors){ %>
+          <ul class="alert alert-danger">
+            <% Object.values(errors).forEach(function(error){%>
+            <li><%= error.msg %></li>
+            <%})%>
+          </ul>
+          <%}%>
+
+          <form class="user" action="/users/register" method="post">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 ไอดีพนักงาน
@@ -62,7 +71,8 @@
           </form>
           <hr />
           <div class="text-center">
-            ฉันเป็นสมาชิกอยู่แล้ว <a class="small" href="/login">เข้าสู่ระบบ</a>
+            ฉันเป็นสมาชิกอยู่แล้ว
+            <a class="small" href="/users/login">เข้าสู่ระบบ</a>
           </div>
         </div>
       </div>
