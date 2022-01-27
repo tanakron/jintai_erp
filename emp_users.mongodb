@@ -1,0 +1,13 @@
+
+ const database = 'empuser';
+
+use(database);
+use("empuser")
+db.empuser.insertOne(
+   
+{
+    empid:"01835",
+    password:"1234",
+  repassword:"1234"
+},
+)

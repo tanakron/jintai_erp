@@ -13,15 +13,17 @@
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">ลงทะเบียนพนักงาน</h1>
           </div>
-          <form class="user">
+          <form class="user" action="/register" method="post">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 ไอดีพนักงาน
                 <input
+                  name="empid"
                   type="text"
                   class="form-control form-control-user"
                   id="exampleFirstName"
                   placeholder="ไอดีพนักงาน"
+                  value=""
                 />
               </div>
             </div>
@@ -30,26 +32,33 @@
               <div class="col-sm-6 mb-3 mb-sm-0">
                 รหัสผ่าน
                 <input
+                  name="password"
                   type="password"
                   class="form-control form-control-user"
                   id="exampleInputPassword"
-                  placeholder="Password"
+                  placeholder="รหัสผ่าน"
                 />
               </div>
               <div class="col-sm-6">
                 ยืนยันรหัสผ่าน
                 <input
+                  name="repassword"
                   type="password"
                   class="form-control form-control-user"
                   id="exampleRepeatPassword"
-                  placeholder="Repeat Password"
+                  placeholder="ยืนยันรหัสผ่าน"
                 />
               </div>
             </div>
-            <a href="/login" class="btn btn-primary btn-user btn-block">
-              Register Account
-            </a>
+
             <hr />
+
+            <input
+              type="submit"
+              name=""
+              value="Register"
+              class="btn btn-primary"
+            />
           </form>
           <hr />
           <div class="text-center">
