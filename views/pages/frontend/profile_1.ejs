@@ -10,8 +10,15 @@
     <div class="container-fluid">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">ข้อมูลส่วนตัว</h1>
+
+        <div class="alert alert-primary" role="alert">
+          <%- messages() %>
+          <h4>รหัสพนักงาน</h4>
+          <h3><%= user.empid %></h3>
+        </div>
       </div>
       <div class="row">
+        <div class="col-md-3"></div>
         <div class="col-md-6">
           <div class="row">
             <!-- Earnings (Monthly) Card Example -->
@@ -103,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
           <div class="card shadow" style="width: 18rem">
             <img
               src="https://jobdst.com/images/content_image/105942619.jpg"
@@ -132,4 +139,7 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    $("#messages").addClass("alert alert-success");
+  </script>
 </html>

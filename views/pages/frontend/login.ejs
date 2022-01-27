@@ -1,61 +1,39 @@
-<div class="container-fluid">
-  <div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-      <!-- Nested Row within Card Body -->
-      <div class="row">
-        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-        <div class="col-lg-12">
-          <div class="p-5">
-            <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">เข้าสู่ระบบ</h1>
-            </div>
-            <form class="user">
-              <div class="form-group">
-                <label for="ไอดีพนักงาน">ไอดีพนักงาน</label>
-                <input
-                  type="email"
-                  class="form-control form-control-user"
-                  id="exampleInputEmail"
-                  aria-describedby="emailHelp"
-                  placeholder="ID_EMP"
-                />
-              </div>
-              <div class="form-group">
-                รหัสผ่าน
-                <input
-                  type="password"
-                  class="form-control form-control-user"
-                  id="exampleInputPassword"
-                  placeholder="Password"
-                />
-              </div>
-              <div class="form-group">
-                <div class="custom-control custom-checkbox small">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customCheck"
-                  />
-                  <label class="custom-control-label" for="customCheck"
-                    >จำฉันไว้</label
-                  >
-                </div>
-              </div>
-              <a href="/profile" class="btn btn-primary btn-user btn-block">
-                Submit
-              </a>
-              <hr />
-            </form>
-            <hr />
-            <div class="text-center">
-              <a class="small" href="/users/forgotpassword">ลืมรหัสผ่าน ?</a>
-            </div>
-            <div class="text-center">
-              <a class="small" href="/users/register">สมัครสมาชิก</a>
-            </div>
-          </div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2 align="center">เข้าสู่ระบบ</h2>
+      <%- messages() %>
+      <form class="form-group" action="/users/login" method="post">
+        <div class="form-group">
+          <label for="">EMP_ID:</label>
+          <input type="text" name="username" value="" class="form-control" />
         </div>
-      </div>
+        <div class="form-group">
+          <label for="">PASSWORD:</label>
+          <input
+            type="password"
+            name="password"
+            value=""
+            class="form-control"
+          />
+        </div>
+        <input type="submit" name="" value="Login" class="btn btn-success" />
+      </form>
     </div>
-  </div>
-</div>
+  </body>
+  <script type="text/javascript">
+    $("#messages").addClass("alert alert-danger");
+  </script>
+</html>

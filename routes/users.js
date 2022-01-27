@@ -18,7 +18,7 @@ router.post(
   }),
   function (req, res) {
     req.flash("success", "ลงชื่อเข้าใช้เรียบร้อยแล้ว");
-    res.redirect("/");
+    res.redirect("/users/profile");
   }
 );
 
@@ -33,8 +33,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(
-  new LocalStrategy(function (empid, password, done) {
-    User.getUserByName(empid, function (err, user) {
+  new LocalStrategy(function (username, password, done) {
+    User.getUserByName(username, function (err, user) {
       if (err) throw error;
       if (!user) {
         return done(null, false);
@@ -52,25 +52,21 @@ passport.use(
     });
   })
 );
-
 router.post(
   "/register",
   [
-    check("empid", "กรุณาใส่รหัสพนักงานของท่าน").isEmail(),
-    check("password", "กรุณาป้อนรหัสผ่าน").not().isEmpty(),
-    check("repassword", "กรุณาป้อนรหัสผ่านอีกครั้งให้ตรงกัน").not().isEmpty(),
+    check("empid", "กรุณาใส่รหัสพนักงาน").not().isEmpty(),
+    check("password", "กรุณาใส่รหัสผ่าน").not().isEmpty(),
+    check("repassword", "กรุณาใส่รหัสผ่านยืนยันอีกครั้ง").not().isEmpty(),
   ],
   function (req, res, next) {
     const result = validationResult(req);
     var errors = result.errors;
-    //Validation Data
     if (!result.isEmpty()) {
-      //Return error to views
-      res.render("", {
+      res.render("pages/frontend/register", {
         errors: errors,
       });
     } else {
-      //Insert  Data
       var empid = req.body.empid;
       var password = req.body.password;
       var repassword = req.body.repassword;
@@ -82,12 +78,15 @@ router.post(
       User.createUser(newUser, function (err, user) {
         if (err) throw err;
       });
-      res.location("/");
-      res.redirect("/");
+      res.location("ี/users/register");
+      res.redirect("/users/login");
     }
   }
 );
-
+router.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/users/login");
+});
 router.get("", (req, res) => {
   res.render("pages/frontend/index", { title: "หน้าหลัก" });
 });
@@ -104,7 +103,9 @@ router.get("/register", (req, res) => {
 router.get("/error", (req, res) => {
   res.render("pages/frontend/error", { title: "Error" });
 });
-
+router.get("/registest", (req, res) => {
+  res.render("pages/frontend/registest");
+});
 router.get("/create_profile", (req, res) => {
   res.render("pages/frontend/create_profile", {
     title: "Create profile",
@@ -119,4 +120,5 @@ router.get("/profile", (req, res) => {
     layout: "./layouts/backend",
   });
 });
+
 module.exports = router;

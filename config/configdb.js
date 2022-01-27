@@ -2,7 +2,7 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 
-var mongoDB = "mongodb://localhost:27017/empuser";
+var mongoDB = "mongodb://localhost:27017/LoginDB";
 
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
@@ -38,9 +38,9 @@ module.exports.createUser = function (newUser, callback) {
 module.exports.getUserById = function (id, callback) {
   User.findById(id, callback);
 };
-module.exports.getUserByName = function (name, callback) {
+module.exports.getUserByName = function (empid, callback) {
   var query = {
-    name: name,
+    empid: empid,
   };
   User.findOne(query, callback);
 };
