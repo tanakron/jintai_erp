@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "61f34c51a93c0a62bfb54930"
+  },
+  "emp_id": "01835",
+  "emp_typename": "นางสาว",
+  "emp_name": "ณิชกานต์",
+  "emp_gender": "หญิง",
+  "emp_birthday": {
+    "$date": "2011-04-09T17:00:00Z"
+  },
+  "emp_datein": {
+    "$date": "2017-04-02T17:00:00Z"
+  },
+  "emp_dateout": {
+    "$date": "2011-04-08T17:00:00Z"
+  },
+  "emp_status": 0,
+  "emp_salary": {
+    "$numberDecimal": "0"
+  },
+  "emp_extra": {
+    "$numberDecimal": "0"
+  },
+  "emp_img": "https://edu.rmu.ac.th/personnel/picture/1449900284610.jpg",
+  "emp_lastname": "อาดำ"
+}]

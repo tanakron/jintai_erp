@@ -1,7 +1,7 @@
-const database ="admin"
+const database ="erp_hr"
 use(database)
 
-db.getUsers()
+// db.getUsers()
 
 // const database = 'smartinvdb';
 
@@ -33,14 +33,14 @@ db.getUsers()
 // db.dropUser("samit")
 
 // สร้าง User ใหม่ใน MongoDB
-db.createUser({
-    user: "adminjtw",
-    pwd: "123456",
-    roles: [
-        {
-            role: "userAdminAnyDatabase",
-            db: "admin"
-        },
-        "readWriteAnyDatabase"
-    ]
-})
+// db.createUser({
+//     user: "adminjtw",
+//     pwd: "123456",
+//     roles: [
+//         {
+//             role: "userAdminAnyDatabase",
+//             db: "erp_hr"
+//         },
+       
+//     ]
+// })

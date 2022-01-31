@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
-const url = "mongodb://adminjtw:123456@localhost:27017";
+const url = "mongodb://localhost:27017/erp_hr";
 var _db;
-var dbname = "admin";
+var dbname = "erp_hr";
 const connectDb = (callback) => {
   if (_db) return callback();
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, clinet) {

@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "61f6bd44cf2d843ea794ba39"
+  },
+  "hr_id": 3010,
+  "name_hr": "testppppp",
+  "lastname_hr": "hr",
+  "level": 2,
+  "password": "123456",
+  "createdateDate": "2021-11-21T17:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "61f6bd80cf2d843ea794ba3a"
+  },
+  "hr_id": 78977,
+  "name_hr": "trsty",
+  "lastname_hr": "dadadad",
+  "level": 1,
+  "password": "4646465445456",
+  "createdateDate": "2021-11-21T17:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "61f6bff9c1b6139cc518114e"
+  },
+  "hr_id": 879797,
+  "name_hr": "123456",
+  "lastname_hr": "123456",
+  "level": 1,
+  "password": "123456",
+  "createdateDate": "2021-11-21T17:00:00.000Z"
+}]

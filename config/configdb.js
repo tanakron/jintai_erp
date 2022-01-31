@@ -2,7 +2,7 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 
-var mongoDB = "mongodb://localhost:27017/LoginDB";
+var mongoDB = "mongodb://localhost:27017/erp_hr";
 
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,

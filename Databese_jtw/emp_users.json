@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "61f6c248a459141b7abadd36"
+  },
+  "emp_id": "01835",
+  "emp_typename": "นางสาว",
+  "emp_name": "อาดำ",
+  "emp_gender": "หญิง",
+  "emp_birthday": "0",
+  "emp_datein": "04/03/2017",
+  "emp_dateout": "4/9/11/",
+  "emp_status": "0",
+  "emp_salary": "0",
+  "emp_extra": "0",
+  "emp_img": "https://www.prachachat.net/wp-content/uploads/2018/02/Intira_Laomeepol.jpg"
+},{
+  "_id": {
+    "$oid": "61f6c248a459141b7abadd37"
+  },
+  "emp_id": "03585",
+  "emp_typename": "นางสาว",
+  "emp_name": "เจ๊ะมะ",
+  "emp_gender": "หญิง",
+  "emp_birthday": "0",
+  "emp_datein": "21/09/2021",
+  "emp_dateout": "0/2/19",
+  "emp_status": "0",
+  "emp_salary": "0",
+  "emp_extra": "0",
+  "emp_img": "https://www.prachachat.net/wp-content/uploads/2018/02/Intira_Laomeepol.jpg"
+}]

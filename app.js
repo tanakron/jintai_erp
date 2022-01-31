@@ -68,7 +68,8 @@ app.use("/users", usersRouter);
 
 app.use("/admin", adminRouter);
 // Run Express Server ที่ Port 5000
-app.listen(5000, () => {
-  console.log("Server run at port 5000");
+app.listen(3000, () => {
+  console.log("Server run at port 3000");
 });
 module.exports = app;
+app.set('port', process.env.PORT || 3000);

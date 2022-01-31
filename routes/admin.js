@@ -20,12 +20,14 @@ router.get("", (req, res) => {
 
 router.get("/emp_creatposition", async (req, res) => {
   const emp_users = await db.collection("emp_users").find({}).toArray();
-  res.json(emp_users);
-  // res.render("pages/backend/emp_creatposition", {
-  //   title: "หน้าหลัก Admin",
-  //   heading: "Backendadmin",
-  //   layout: "./layouts/adminbackend",
-  // });
+  // res.json(emp_users);
+  res.render("pages/backend/emp_creatposition", {
+    title: "หน้าหลัก Admin",
+    heading: "Backendadmin",
+    layout: "./layouts/adminbackend",
+    data: emp_users,
+    moment: moment,
+  });
 });
 
 router.get("/admin_hr", async (req, res) => {
@@ -47,6 +49,18 @@ router.get("/create_hr", (req, res) => {
     layout: "./layouts/adminbackend",
   });
 });
+
+router.get("/emp_view_position", async (req, res) => {
+  const emp_users = await db.collection("emp_users").find({}).toArray();
+  // res.json(emp_users);
+  res.render("pages/backend/emp_view_position", {
+    title: "หน้า position",
+    heading: "Backendadmin",
+    layout: "./layouts/backend",
+    data: emp_users,
+  });
+});
+
 // การ insert data
 router.post("/create_hr", async (req, res) => {
   let hr_id = req.body.hr_id;
@@ -64,6 +78,41 @@ router.post("/create_hr", async (req, res) => {
     createdateDate: "2021-11-21T17:00:00.000Z",
   });
   res.render("pages/backend/create_hr", {
+    title: "หน้าหลัก Admin",
+    heading: "Backendadmin",
+    layout: "./layouts/adminbackend",
+  });
+});
+
+// การ insert data
+router.post("/insert_position", async (req, res) => {
+  let emp_id = req.body.emp_id;
+  let emp_type = req.body.emp_type;
+  let emp_name = req.body.emp_name;
+  let emp_lastname = req.body.emp_lastname;
+  let emp_gender = req.body.emp_gender;
+  let emp_birthday = req.body.emp_birthday;
+  let emp_datein = req.body.emp_datein;
+  let emp_dateout = req.body.emp_dateout;
+  let emp_status = req.body.emp_status;
+  let emp_salary = req.body.emp_salary;
+  let emp_extra = req.body.emp_extra;
+  // console.log(hr_id + name_hr + lastname_hr + level + password);
+  await db.collection("emp_users").insertOne({
+    emp_id: emp_id,
+    emp_type: emp_type,
+    emp_name: emp_name,
+    emp_lastname: emp_lastname,
+    emp_gender: emp_gender,
+    emp_birthday: parseInt(emp_birthday),
+    emp_datein: emp_datein,
+    emp_dateout: emp_dateout,
+    emp_status: parseInt(emp_status),
+    emp_salary: parseInt(emp_salary),
+    emp_extra: emp_extra,
+    createdateDate: "2021-11-21T17:00:00.000Z",
+  });
+  res.render("pages/backend/insert_position", {
     title: "หน้าหลัก Admin",
     heading: "Backendadmin",
     layout: "./layouts/adminbackend",

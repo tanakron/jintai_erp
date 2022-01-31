@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "61f255eee2093eb35efb6453"
+  },
+  "empid": "1234",
+  "password": "$2a$10$RQoq0RFLlcGl06w7YG/1juKfS2iI4Z3M7pHI86zU/BNz4USS9TM.K",
+  "repassword": "123456",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f2605012ea6e24aedd6e30"
+  },
+  "empid": "00033",
+  "password": "$2a$10$wGBAMQq7sL0Ake5vCGH/mOhr6zNFGLZA1bTPDvG0S6xtOvO5HfinW",
+  "repassword": "123456",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f2702aae0b887367a775f0"
+  },
+  "empid": "01835",
+  "password": "$2a$10$cdCdMzWrtFdnNWCjgdeVmOwxehyskKHRVGc4AAdRIayomRyw0YPY6",
+  "repassword": "123456",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f270e8ae0b887367a77607"
+  },
+  "empid": "03010",
+  "password": "$2a$10$6G3SjwZZawD1WTlXJy1Gy.UTHCaSBwDUkeONzvEwTyNewn.1q24GG",
+  "repassword": "123456",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f3959e686820f97a47fbe7"
+  },
+  "empid": "03010",
+  "password": "$2a$10$9u6k4QnlKZsMZb9soIZYe.MEDvIn6.tcJSEUqoz7QIaoExfm6CMGK",
+  "repassword": "123456",
+  "__v": 0
+}]
