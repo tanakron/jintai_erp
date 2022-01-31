@@ -1,0 +1,46 @@
+const database ="admin"
+use(database)
+
+db.getUsers()
+
+// const database = 'smartinvdb';
+
+// // Create a new database.
+// use(database);
+
+// การเพิ่ม document หลายรายการพร้อมกัน
+// db.products.insertMany(
+//     [
+//         {
+//             AdminID: 1,
+//             Type: 1,
+//             TypeName: "",
+//             JobName: "",
+//             CreatedDate: "2021-11-21T17:00:00.000Z",
+//             ModifiedDate: "2021-11-21T17:00:00.000Z"
+//         },
+      
+//     ]
+// )
+
+// การลบ collection ทิ้ง
+// db.products.drop()
+
+
+
+
+// ลบรายชื่อ User ที่ไม่ต้องการ
+// db.dropUser("samit")
+
+// สร้าง User ใหม่ใน MongoDB
+db.createUser({
+    user: "adminjtw",
+    pwd: "123456",
+    roles: [
+        {
+            role: "userAdminAnyDatabase",
+            db: "admin"
+        },
+        "readWriteAnyDatabase"
+    ]
+})

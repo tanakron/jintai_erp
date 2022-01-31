@@ -18,16 +18,12 @@
     <title><%- title %></title>
   </head>
   <body id="page-top">
-    <div id="wrapper">
-      <!-- Sidebar -->
+    <!-- Sidebar -->
 
-      <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-          <%- include('../include/backend/navbaradmin.ejs') %> <%- body %>
-        </div>
-      </div>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <%- include('../include/backend/navbaradmin.ejs') %> <%- body %>
     </div>
-
+    <%- include('../include/backend/footer.ejs') %>
     <script src="/backend/vendor/jquery/jquery.min.js"></script>
     <script src="/backend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/backend/vendor/jquery-easing/jquery.easing.min.js"></script>

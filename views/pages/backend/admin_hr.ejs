@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+  </head>
+  <body>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">แอดมิน HR</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <% if(data.length) { %>
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>ID HR</th>
+                <th>ชื่อ HR</th>
+                <th>นามสกุล HR</th>
+
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>ID HR</th>
+                <th>ชื่อ HR</th>
+                <th>นามสกุล HR</th>
+
+                <th>การจัดการ</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <% for(let row=0; row < data.length; row++) { %>
+
+              <tr>
+                <td><%=data[row].hr_id %></td>
+                <td><%=data[row].name_hr %></td>
+                <td><%=data[row].lastname_hr %></td>
+                <td>
+                  <%=data[row].level == 1 ? 'ผู้จัดการระบบ' : "ปิดการจัดการ" %>
+                </td>
+
+                <td style="width: 200px">
+                  <a href="/backend/edit_product" class="btn btn-warning"
+                    >Edit</a
+                  >
+                  <a href="/backend/delete_product" class="btn btn-danger"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+          <% }else{%>
+          <p>ไม่พบข้อมูล</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

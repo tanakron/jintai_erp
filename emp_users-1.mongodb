@@ -1,0 +1,36 @@
+
+ const database = 'admin';
+
+use(database);
+
+db.emp_users.insertMany(
+    [
+{
+    emp_id:"01835",
+    emp_typename:"นางสาว",
+    emp_name:"ณิชกานต์",
+    emp_name:"อาดำ",
+    emp_gender:"หญิง",
+    emp_birthday:"0",
+    emp_datein:"04/03/2017",
+    emp_dateout:"4/9/11/",
+    emp_status:"0",
+    emp_salary:"0",
+    emp_extra:"0"
+    
+},
+{
+    emp_id:"03585",
+    emp_typename:"นางสาว",
+    emp_name:"ฟาติมะ",
+    emp_name:"เจ๊ะมะ",
+    emp_gender:"หญิง",
+    emp_birthday:"0",
+    emp_datein:"21/09/2021",
+    emp_dateout:"0/2/19",
+    emp_status:"0",
+    emp_salary:"0",
+    emp_extra:"0"
+}
+]
+)
