@@ -8,7 +8,7 @@ var path = require("path");
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
 var db = mongoose.connection;
-
+const bodyParser = require('body-parser')
 var session = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
@@ -21,12 +21,16 @@ const usersRouter = require("./routes/users");
 // Import EJS Layout
 var expressLayouts = require("express-ejs-layouts");
 
+
+
 // Create express object
 const app = express();
 
 // กำหนด Folder สำหรับบอกตัว express ว่าไฟล์ css , images อยู่ path ไหน
 app.use(express.static("assets"));
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 // กำหนด Template Engine
 app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));

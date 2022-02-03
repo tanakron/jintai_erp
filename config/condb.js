@@ -11,6 +11,8 @@ const connectDb = (callback) => {
     callback();
   });
 };
+
+
 const getDb = () => _db;
 
 module.exports = {

@@ -1,14 +1,25 @@
 // Import Express
 const express = require("express");
+
 //Connect DB
 //  import mongodb condb
-const { connectDb, getDb } = require("../config/condb");
+const {
+  connectDb,
+  getDb
+} = require("../config/condb");
 connectDb(() => (db = getDb()));
-
+var moment = require('moment');
+require('twix');
+// moment-business-days
+// var moment = require('moment-business-days');
 // var db = require("monk")("localhost:27017/LoginDB");
 const router = express.Router();
 var moment = require("moment");
-const { Result } = require("express-validator");
+
+
+
+//  ==========   start  ========== //
+
 
 router.get("", (req, res) => {
   res.render("pages/backend/dashbord", {
@@ -22,7 +33,7 @@ router.get("/emp_creatposition", async (req, res) => {
   const emp_users = await db.collection("emp_users").find({}).toArray();
   // res.json(emp_users);
   res.render("pages/backend/emp_creatposition", {
-    title: "หน้าหลัก Admin",
+    title: "หน้าสร้างรายชื่อพนักงาน",
     heading: "Backendadmin",
     layout: "./layouts/adminbackend",
     data: emp_users,
@@ -49,18 +60,81 @@ router.get("/create_hr", (req, res) => {
     layout: "./layouts/adminbackend",
   });
 });
-
+// ----------------View position ------------------------//
 router.get("/emp_view_position", async (req, res) => {
   const emp_users = await db.collection("emp_users").find({}).toArray();
+
+
   // res.json(emp_users);
   res.render("pages/backend/emp_view_position", {
     title: "หน้า position",
     heading: "Backendadmin",
     layout: "./layouts/backend",
     data: emp_users,
+
+    moment: moment,
+  });
+  å
+});
+
+
+
+// ----------------position------------------------//
+
+
+
+
+
+
+
+
+
+// ----------------View kpi ------------------------//
+
+
+
+
+
+// ----------------------------------------//
+// ----------------View allusers ------------------------//
+
+router.get("/emp_allusers/", async (req, res) => {
+  const emp_allusers = await db.collection("emp_usersall").find({}).toArray();
+
+
+  
+  // res.json(emp_users);
+  res.render("pages/backend/emp_allusers", {
+    title: "หน้าสร้างรายชื่อพนักงาน",
+    heading: "Backendadmin",
+    layout: "./layouts/adminbackend",
+    data: emp_allusers,
+    moment: moment,
   });
 });
 
+
+
+router.get("/view_useremp/:id", async (req, res) => {
+  const emp_usersall = await db.collection("emp_usersall").find({}, {}).toArray();
+  const {
+    id
+  } = req.params
+
+  const results = emp_usersall.find( emp_usersall => emp_usersall.emp_id == id)
+
+ console.log(results)
+  res.render("pages/backend/view_useremp", {
+    title: "หน้า viewuseremp",
+    layout: "./layouts/backend",
+    results: results,
+    moment: moment,
+  })
+
+
+});
+
+// ----------------------------------------//
 // การ insert data
 router.post("/create_hr", async (req, res) => {
   let hr_id = req.body.hr_id;
@@ -75,10 +149,10 @@ router.post("/create_hr", async (req, res) => {
     lastname_hr: lastname_hr,
     level: parseInt(level),
     password: password,
-    createdateDate: "2021-11-21T17:00:00.000Z",
+    createdateDate: new Date(),
   });
   res.render("pages/backend/create_hr", {
-    title: "หน้าหลัก Admin",
+    title: "หน้า กรอกข้อมูลพนักงาน",
     heading: "Backendadmin",
     layout: "./layouts/adminbackend",
   });
@@ -110,9 +184,9 @@ router.post("/insert_position", async (req, res) => {
     emp_status: parseInt(emp_status),
     emp_salary: parseInt(emp_salary),
     emp_extra: emp_extra,
-    createdateDate: "2021-11-21T17:00:00.000Z",
+    createdateDate: new Date(),
   });
-  res.render("pages/backend/insert_position", {
+  res.render("pages/backend/emp_creatposition", {
     title: "หน้าหลัก Admin",
     heading: "Backendadmin",
     layout: "./layouts/adminbackend",

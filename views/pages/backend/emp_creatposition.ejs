@@ -28,9 +28,7 @@
          </div>
         <div class="col-md-4"> 
           <div class="text-center">
-            <% data.forEach(function (post) {%>
-            <img src="<%= post.emp_img %>" class="rounded" alt="..." width="350">
-            <% }) %> 
+         
           </div>
           <br>
          
@@ -49,14 +47,14 @@
               คำนำหน้า
               <div class="form-check ml-3" >
                
-                <input class="form-check-input" type="radio" name="emp_type" value="0" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="emp_type" value="0" id="flexRadioDefault1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
                   นาย
                 </label>
               </div>
               <div class="form-check ml-3">
                
-                <input class="form-check-input" type="radio" name="emp_type" value="1" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="emp_type" value="1" id="flexRadioDefault2" >
                 <label class="form-check-label" for="flexRadioDefault2">
                   นาง
                 </label>
@@ -125,29 +123,26 @@
           <div class="input-group mb-3 ">
 
             <div class="input-group input-group-sm mb-3 ">
-              <span class="input-group-text "  id="inputGroup-sizing-sm ">วันสิ้นสุด</span>
+              <span class="input-group-text "  id="inputGroup-sizing-sm ">อายุงาน</span>
             
-
-                <input id="datepicker3" name="emp_dateout" value="" width="285" />
-                <script>
-                    $('#datepicker3').datepicker({
-                        uiLibrary: 'bootstrap4'
-                    });
-                </script>
+              <input  name="emp_dateout"  type="text" class="form-control ml-3" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm" width="285" >
+        
+                
                 
             </div>
           </div>
             <div class="input-group input-group-sm mb-3 ">
            
               <div class="form-check ml-1">
-                <input class="form-check-input" type="radio" name="emp_status" value="0" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="emp_status" value="0" id="flexRadioDefault1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
                 ทำงานอยู่
                 </label>
               </div>
               <div class="form-check ml-1">
            
-                <input class="form-check-input" type="radio" name="emp_status" value="1" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="emp_status" value="1" id="flexRadioDefault2" >
                 <label class="form-check-label" for="flexRadioDefault2">
                   ออกงานแล้ว
                 </label>
