@@ -8,11 +8,14 @@ var path = require("path");
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
 var db = mongoose.connection;
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+var cors = require("cors");
 
+// Import Method Override
+const methodOverride = require("method-override");
 // Import Router backend.js
 const adminRouter = require("./routes/admin");
 // Import Router frontend.js
@@ -21,27 +24,27 @@ const usersRouter = require("./routes/users");
 // Import EJS Layout
 var expressLayouts = require("express-ejs-layouts");
 
-
-
 // Create express object
 const app = express();
-
-// กำหนด Folder สำหรับบอกตัว express ว่าไฟล์ css , images อยู่ path ไหน
-app.use(express.static("assets"));
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+const paginate = require("express-paginate");
+app.use(paginate.middleware(10, 50));
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // กำหนด Template Engine
 app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
+// กำหนด Folder สำหรับบอกตัว express ว่าไฟล์ css , images อยู่ path ไหน
+app.use(express.static("assets"));
 app.use(logger("dev"));
 //กำหนดค่ารับparamiter โพส
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+// / เรียกใช้ Method Override
+app.use(methodOverride("_method"));
 
 app.use(
   session({
@@ -50,6 +53,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+var corsOptions = {
+  origin: "http://localhost:8080/",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -76,4 +85,4 @@ app.listen(3000, () => {
   console.log("Server run at port 3000");
 });
 module.exports = app;
-app.set('port', process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);

@@ -4,92 +4,152 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="backend/stype.css" rel="stylesheet">
-    <link
-      href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <link rel="stylesheet" href="backend/stype.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-
-    
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-       <p>วันที่  <%=   moment().format('DD-MM-YYYY, h:mm:ss'); %></p>
+        <p>วันที่ <%= moment().format('DD-MM-YYYY, h:mm:ss'); %></p>
         <h6 class="m-0 font-weight-bold text-primary">ข้อมูลพนักงาน</h6>
-       
-
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <% if(data.length) { %>
-       
+
           <table
             class="table table-bordered"
             id="dataTable"
             width="100%"
             cellspacing="0"
           >
-          <p class="ex1">
-          <a href="/admin/emp_creatposition" class="btn btn-success ml-lg-1"
-          >เพิ่มข้อมูล</a
-        ></p>
-            <thead >
-             
+            <p class="ex1">
+              <a href="/admin/emp_creatposition" class="btn btn-success ml-lg-1"
+                >เพิ่มข้อมูล</a
+              >
+            </p>
+            <thead>
               <tr>
+                <th></th>
                 <th>ID พนักงาน</th>
-                <th>ชื่อ พนักงาน </th>
-              
+                <th>ชื่อ พนักงาน</th>
 
                 <th>วันเริ่มงาน</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
+                <th></th>
                 <th>ID พนักงาน</th>
-                <th>ชื่อ พนักงาน </th>
-              
+                <th>ชื่อ พนักงาน</th>
 
                 <th>วันเริ่มงาน</th>
-               
               </tr>
             </tfoot>
-           
+
             <tbody>
               <% for(let row=0; row < data.length; row++) { %>
-                
+
               <tr>
-                
+                <td>
+                  <img
+                    class="img-thumbnail ml-6"
+                    src="../backend/img_users/0<%= data[row].emp_id %>.jpg"
+                    width="160px"
+                    alt=""
+                  />
+                </td>
                 <td><%= data[row].emp_id %></td>
                 <td><%= data[row].emp_fullname %></td>
-            
+
                 <td>
-                    
-                  เริ่มงานวันที่
-               
-                  <%= moment(data[row].emp_start,"DD-MM-YYYY").calendar();  %> 
-                  <br>
-                   ทำงานมา
-         <!-- <%= moment(data[row].emp_start,"DD-MM-YYYY").fromNow(true);   %> รวมวัน -->
-        <%=  moment(data[row].emp_start,"DD-MM-YYYY").twix(new Date(),"DD-MM-YYYY").count("days",true) %> วัน
-          <hr>
-          <%= moment(data[row].emp_start,"DD-MM-YYYY").twix(new Date()).format('days');%> 
+                  เริ่มงานวันที่ <%=
+                  moment(data[row].emp_start,"DD-MM-YYYY").calendar(); %>
+                  <br />
+                  ทำงานมา
+                  <!-- <%= moment(data[row].emp_start,"DD-MM-YYYY").fromNow(true);   %> รวมวัน -->
+                  <%= moment(data[row].emp_start,"DD-MM-YYYY").twix(new
+                  Date(),"DD-MM-YYYY").count("days",true) %> วัน
+                  <hr />
+                  <%= moment(data[row].emp_start,"DD-MM-YYYY").twix(new
+                  Date()).format('days');%>
                 </td>
                 <!-- <td><%= data[row].emp_gender == 1 ? "หญิง":"ชาย" %></td> -->
-                <td> </td>
+                <td></td>
 
                 <td style="width: 400px">
                   <a href="/backend/edit_product" class="btn btn-warning"
-                    >Edit</a
+                    >แก้ไขข้อมูล</a
                   >
-                  <a href="/backend/delete_product" class="btn btn-danger"
-                    >Delete</a
+                  <!--======== ลบข้อมูล  ============= -->
+                  <form
+                    id="delete_position_form"
+                    action="/admin/emp_delete_position/<%=data[row]._id%>/resource?_method=DELETE"
+                    method="GET"
+                    style="display: inline-block"
                   >
-                  <a href="/admin/view_useremp/<%= data[row].emp_id %>" class="btn btn-success"
-                    >View</a
+                    <button
+                      class="btn btn-danger"
+                      type="submit"
+                      id="btn_delete_product"
+                    >
+                      ลบข้อมูล
+                    </button>
+                  </form>
+                  <!--======== ดูข้อมูล  ============= -->
+
+                  <!-- Button trigger modal -->
+                  <form
+                    id="delete_position_form"
+                    action="/admin/view_useremp/<%= data[row]._id %>"
                   >
-                
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      ดูข้อมูลพนักงาน
+                    </button>
+                  </form>
+
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button type="button" class="btn btn-primary">
+                            Save changes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </td>
               </tr>
               <% } %>
@@ -98,12 +158,109 @@
           <% }else{%>
           <p>ไม่พบข้อมูล</p>
           <% } %>
-          
         </div>
       </div>
+      <div
+        class="dataTables_info"
+        id="dataTable_info"
+        role="status"
+        aria-live="polite"
+      >
+        Showing 1 to 10 of 57 entries
+      </div>
     </div>
- 
-    <script src="moment.js"></script>
-    <script src="moment-business-days.js"></script>
+    <div class="col-sm-12 col-md-7">
+      <div
+        class="dataTables_paginate paging_simple_numbers"
+        id="dataTable_paginate"
+      >
+        <ul class="pagination">
+          <li
+            class="paginate_button page-item previous disabled"
+            id="dataTable_previous"
+          >
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="0"
+              tabindex="0"
+              class="page-link"
+              >Previous</a
+            >
+          </li>
+          <li class="paginate_button page-item active">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="1"
+              tabindex="0"
+              class="page-link"
+              >1</a
+            >
+          </li>
+          <li class="paginate_button page-item">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="2"
+              tabindex="0"
+              class="page-link"
+              >2</a
+            >
+          </li>
+          <li class="paginate_button page-item">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="3"
+              tabindex="0"
+              class="page-link"
+              >3</a
+            >
+          </li>
+          <li class="paginate_button page-item">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="4"
+              tabindex="0"
+              class="page-link"
+              >4</a
+            >
+          </li>
+          <li class="paginate_button page-item">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="5"
+              tabindex="0"
+              class="page-link"
+              >5</a
+            >
+          </li>
+          <li class="paginate_button page-item">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="6"
+              tabindex="0"
+              class="page-link"
+              >6</a
+            >
+          </li>
+          <li class="paginate_button page-item next" id="dataTable_next">
+            <a
+              href="#"
+              aria-controls="dataTable"
+              data-dt-idx="7"
+              tabindex="0"
+              class="page-link"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

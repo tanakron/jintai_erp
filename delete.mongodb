@@ -1,0 +1,8 @@
+const database ="erp_hr"
+
+use(database)
+db.emp_usersall.deleteOne({
+_id:"61fb5c4ab8a3cce1bfe0794e"
+}
+
+);
