@@ -1,17 +1,21 @@
 <template>
   <div>
-
+ 
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-success">
       <!-- Card stats -->
       <b-row>
         <b-col xl="3" md="6">
+        
           <stats-card title="พนักงานทั้งหมด"
                       type="gradient-red"
-                      sub-title="350,897"
                       icon="ni ni-active-40"
-                      class="mb-4">
-
+                      class="mb-4"
+                      >
+                       <h3>พนักงานทั้งหมด</h3>
+          <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
+          
             <template slot="footer">
+           
               <span class="text-success mr-2">3.48%</span>
               <span class="text-nowrap">Since last month</span>
             </template>
@@ -20,10 +24,11 @@
         <b-col xl="3" md="6">
           <stats-card title="รายงาน KPI"
                       type="gradient-orange"
-                      sub-title="2,356"
+                 
                       icon="ni ni-chart-pie-35"
                       class="mb-4">
-
+                      <h3>รายงาน KPI</h3>
+ <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
             <template slot="footer">
               <span class="text-success mr-2">12.18%</span>
               <span class="text-nowrap">Since last month</span>
@@ -33,16 +38,17 @@
         <b-col xl="3" md="6">
           <stats-card title="ตำแหน่งงาน"
                       type="gradient-green"
-                      sub-title="924"
+                    
                       icon="ni ni-money-coins"
                       class="mb-4">
-
+                         <h3>รายงาน การลา</h3>
+ <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
             <template slot="footer">
               <span class="text-danger mr-2">5.72%</span>
               <span class="text-nowrap">Since last month</span>
             </template>
           </stats-card>
-
+    
         </b-col>
         <b-col xl="3" md="6">
           <stats-card title="Performance"
@@ -50,7 +56,8 @@
                       sub-title="49,65%"
                       icon="ni ni-chart-bar-32"
                       class="mb-4">
-
+                      <h3>รายงาน การสาย</h3>
+ <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
             <template slot="footer">
               <span class="text-success mr-2">54.8%</span>
               <span class="text-nowrap">Since last month</span>
@@ -136,6 +143,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
   // Charts
   import * as chartConfigs from '@/components/Charts/config';
   import LineChart from '@/components/Charts/LineChart';
@@ -150,6 +158,7 @@
   import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
+    
     components: {
       LineChart,
       BarChart,
@@ -158,8 +167,16 @@
       PageVisitsTable,
       SocialTrafficTable
     },
+         created() {
+  
+    axios.get("http://localhost:3000/admin/emp_alluserscconut").then((res) => {
+      this.usercount= res.data;
+     
+    });
+  },
     data() {
       return {
+       usercount:'',
         bigLineChart: {
           allData: [
             [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -206,10 +223,16 @@
     },
     mounted() {
       this.initBigChart(0);
-    }
+    },
+     
   };
+
 </script>
 <style>
+.type{
+  font-weight: bold;
+  font-size: 3em;
+}
 .el-table .cell{
   padding-left: 0px;
   padding-right: 0px;

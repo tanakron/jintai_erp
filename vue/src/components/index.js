@@ -38,6 +38,7 @@ export {
   StatsCard,
   BaseTable,
   BaseDropdown,
+
   SidebarPlugin,
   BaseNav,
   NavbarToggleButton,

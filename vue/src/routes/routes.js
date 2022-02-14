@@ -9,6 +9,7 @@ const routes = [
     redirect: 'dashboard',
     component: DashboardLayout,
     children: [
+      
       {
         path: '/dashboard',
         name: 'dashboard',
@@ -18,26 +19,37 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/Icons.vue')
+        path: '/emp_user',
+        name: 'emp_user',
+        component: () => import('../views/Userpages/Emp_user.vue')
       },
+      
       {
         path: '/profile',
         name: 'profile',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/UserProfile.vue')
+        component: () => import('../views/Pages/UserProfile.vue')
       },
       {
-        path: '/maps',
-        name: 'maps',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/GoogleMaps.vue')
+        path: '/kpi_users',
+        name: 'kpi_users',
+        component: () => import('../views/Pages/kpi_users.vue')
       },
-      {
-        path: '/tables',
-        name: 'tables',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/RegularTables.vue')
-      }
+   
+      
     ]
+  },
+  {
+    path: '/emp_profile/:emp_id?',
+    name: 'emp_profile',
+    component: () => import('../views/Pages/emp_profile'),
+    params:true,
+   
+  },
+  {
+    path: '/kpi_form',
+    name: 'kpi_form',
+    component: () => import('../views/Pages/kpi_form'),
+   
   },
   {
     path: '/',

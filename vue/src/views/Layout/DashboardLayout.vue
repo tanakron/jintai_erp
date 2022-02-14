@@ -15,7 +15,7 @@
             :link="{
               name: 'ข้อมูลพนักงาน',
               path: '/emp_user',
-              icon: 'ni ni-planet text-blue'
+              icon: 'ni ni-single-02 text-yellow'
               }"
             >
         </sidebar-item> 
@@ -46,33 +46,15 @@
         </sidebar-item> -->
  <sidebar-item
               :link="{
-                name: 'User Profile',
-                path: '/profile',
-                icon: 'ni ni-single-02 text-yellow'
+                name: 'รายงาน KPI',
+                path: '/kpi_users',
+                icon: 'ni ni-single-02 text-red'
                 }">
         </sidebar-item>
-        <sidebar-item
-                :link="{
-                  name: 'Tablesuser',
-                  path: '/tables',
-                  icon: 'ni ni-bullet-list-67 text-red'
-                }">
-        </sidebar-item>
+   
 
-        <sidebar-item
-                  :link="{
-                    name: 'Login',
-                    path: '/login',
-                    icon: 'ni ni-key-25 text-info'
-                  }">
-        </sidebar-item>
-        <sidebar-item
-                  :link="{
-                    name: 'Register',
-                    path: '/register',
-                    icon: 'ni ni-circle-08 text-pink'
-                  }">
-        </sidebar-item>
+   
+  
       </template>
 
       <template slot="links-after">
