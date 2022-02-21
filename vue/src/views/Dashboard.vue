@@ -12,7 +12,7 @@
                       class="mb-4"
                       >
                        <h3>พนักงานทั้งหมด</h3>
-          <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
+          <span  v-for="(usercount,index)  in usercount " :key="index" class="type" > {{usercount}} </span>
           
             <template slot="footer">
            
@@ -28,7 +28,7 @@
                       icon="ni ni-chart-pie-35"
                       class="mb-4">
                       <h3>รายงาน KPI</h3>
- <span  v-for="usercount in usercount " :key="usercount" class="type" > {{usercount}} </span>
+ <span  v-for=" (kpi_count,index) in kpi_counts " :key="index" class="type" > {{kpi_count}} </span>
             <template slot="footer">
               <span class="text-success mr-2">12.18%</span>
               <span class="text-nowrap">Since last month</span>
@@ -167,16 +167,21 @@ import axios from "axios";
       PageVisitsTable,
       SocialTrafficTable
     },
-         created() {
+        async  created() {
   
-    axios.get("http://localhost:3000/admin/emp_alluserscconut").then((res) => {
+    await axios.get("http://localhost:3000/admin/emp_alluserscconut").then((res) => {
       this.usercount= res.data;
+     
+    });
+      await  axios.get("http://localhost:3000/admin/kpi_count").then((res) => {
+      this.kpi_counts= res.data;
      
     });
   },
     data() {
       return {
-       usercount:'',
+        kpi_counts:[],
+       usercount:[],
         bigLineChart: {
           allData: [
             [0, 20, 10, 30, 15, 40, 20, 60, 60],

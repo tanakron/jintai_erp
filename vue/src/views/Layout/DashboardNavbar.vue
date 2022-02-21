@@ -49,20 +49,14 @@
         <template>
 
           <b-dropdown-header class="noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
+            <h6 class="text-overflow m-0">Welcome!  Jintai App</h6>
           </b-dropdown-header>
-          <b-dropdown-item href="#!">
+          <b-dropdown-item href="#/adminseting">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>My Admin Settings</span>
           </b-dropdown-item>
-          <b-dropdown-item href="#!">
-            <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
-          </b-dropdown-item>
-          <b-dropdown-item href="#!">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
-          </b-dropdown-item>
+         
+      
           <b-dropdown-item href="#!">
             <i class="ni ni-support-16"></i>
             <span>Support</span>
@@ -72,6 +66,11 @@
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </b-dropdown-item>
+  <b-dropdown-item href="#/test">
+            <i class="ni ni-support-16"></i>
+            <span>test</span>
+          </b-dropdown-item>
+
 
         </template>
       </base-dropdown>

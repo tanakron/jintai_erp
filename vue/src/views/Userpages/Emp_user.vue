@@ -1,10 +1,14 @@
 <template>
+
     <b-card >
+     
         <b-card-header class="border-0">
             <h3 class="mb-0">ข้อมูลพนักงานทั้งหมด</h3>
         </b-card-header>
-       
+          <b-button variant="danger" class="btadd" href="#/emp_forminsert">เพิ่มข้อมูล</b-button>
+      
  <b-table :items="items" :fields="fields" striped responsive="sm">
+   
    <template #cell(show_details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
@@ -17,7 +21,7 @@
         <b-card>
            <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>รูป:</b></b-col>
-            <b-col> <b-img v-bind="mainProps"  width="100px" rounded="circle" alt="Circle image" :src="'img/img_users/'+`0${row.item.emp_id}.jpg`"></b-img></b-col>
+            <b-col> <b-img v-bind="mainProps"  width="100px" rounded="circle" alt="Circle image" :src="row.item.emp_url + `0` + row.item.emp_id + `.jpg`"></b-img></b-col>
           </b-row>
           <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>Age:</b></b-col>
@@ -55,20 +59,27 @@ import axios from "axios";
 
   export default {
    
-     created() {
-      axios.get("http://localhost:3000/admin/emp_allusers").then((res) => {
-       this.items = res.data;
+    //  created() {
+    //   axios.get("http://localhost:3000/admin/emp_allusers").then((res) => {
+    //    this.items = res.data;
      
-      });
+    //   });
  
+    // },
+
+    async mounted(){
+let items = await axios.get("http://localhost:3000/admin/emp_allusers")
+this.items = items.data;
     },
     data() {
       
       return {
       fields: ['emp_id', 'emp_fullname', 'emp_start','show_details'],
-   items: [
-   
-   ]
+  items: 
+   {
+     emp_url:"http://localhost:3000/backend/img_users/",
+   },
+  
       };
     },
     computed: {
@@ -83,3 +94,9 @@ import axios from "axios";
   }
   
 </script>
+<style>
+.btadd{
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+</style>

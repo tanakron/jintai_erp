@@ -5,6 +5,17 @@ import NotFound from '@/views/NotFoundPage.vue';
 
 const routes = [
   {
+    path:'/adminseting',
+    name:'adminseting',
+    component: () => import('../views/Pages/Admin/admin_seting.vue')
+  },
+  {
+    path:'/test',
+    name:'test',
+    component: () => import('../views/test.vue')
+  },
+  
+  {
     path: '/',
     redirect: 'dashboard',
     component: DashboardLayout,
@@ -18,12 +29,13 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
+     
       {
         path: '/emp_user',
         name: 'emp_user',
         component: () => import('../views/Userpages/Emp_user.vue')
       },
-      
+  
       {
         path: '/profile',
         name: 'profile',
@@ -34,7 +46,11 @@ const routes = [
         name: 'kpi_users',
         component: () => import('../views/Pages/kpi_users.vue')
       },
-   
+      {
+        path: '/emp_forminsert',
+        name: 'emp_forminsert',
+        component: () => import('../views/Pages/emp_forminsert.vue')
+      },
       
     ]
   },
