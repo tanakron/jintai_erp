@@ -1,7 +1,9 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+    <b-navbar toggleable="lg" type="dark" variant="info" >
+      <b-navbar-brand href="#" ></b-navbar-brand>
+<img alt="Vue logo" class="head1" src="../assets/jt2.png" />
+  
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -32,4 +34,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@1&display=swap');
+.head1{
+  margin-right: 150px;
+  margin-left: 80px;
+}
+</style>

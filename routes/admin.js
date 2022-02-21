@@ -5,7 +5,10 @@ const express = require("express");
 const objectId = require("mongodb").ObjectId;
 //Connect DB
 //  import mongodb condb
-const { connectDb, getDb } = require("../config/condb");
+const {
+  connectDb,
+  getDb
+} = require("../config/condb");
 connectDb(() => (db = getDb()));
 var moment = require("moment");
 require("twix");
@@ -56,44 +59,78 @@ router.get("/create_hr", (req, res) => {
     layout: "./layouts/adminbackend",
   });
 });
-// ----------------View position ------------------------//
-// router.get("/emp_view_position", async (req, res) => {
-//   const emp_users = await db.collection("emp_users").find({}).toArray();
 
-//   // res.json(emp_users);
-//   res.render("pages/backend/emp_view_position", {
-//     title: "หน้า position",
-//     heading: "Backendadmin",
-//     layout: "./layouts/backend",
-//     data: emp_users,
-
-//     moment: moment,
-//   });
-
-// });
 
 // ----------------position------------------------//
 
 // ----------------View kpi ------------------------//
-
+router.get("/kpi_empuser/", async (req, res) => {
+  const kpi_empuser = await db.collection("kpi_from").find({}).toArray();
+  res.json(kpi_empuser);
+});
 // ----------------------------------------//
+// ---------  KPI COUNT -----------------//
+router.get("/kpi_count/", async (req, res) => {
+  const kpi_count = await db.collection("kpi_from").countDocuments();
+  let kpi_counts = JSON.stringify(kpi_count);
+  res.json(kpi_counts);
+res.end
+});
+
+
+// ----------------Insert kpi ------------------------/
+router.post("/kpi_from", async (req, res) => {
+  let emp_id = req.body.emp_id;
+  let kpi_name = req.body.kpi_name;
+  let kpi_department = req.body.kpi_department;
+  let kpi_beunder = req.body.kpi_beunder;
+  let kpi_subject = req.body.kpi_subject;
+  let kpi_dateend = req.body.kpi_dateend;
+  let kpi_datenow = req.body.kpi_datenow;
+  let kpi_documentnumber = req.body.kpi_documentnumber;
+  let = req.body.isActive;
+  // console.log(emp_id + kpi_name + kpi_department + kpi_beunder + kpi_subject + kpi_dateend + kpi_datenow  + kpi_documentnumber + isActive) 
+  await db.collection("kpi_from").insertOne({
+    emp_id: parseInt(emp_id),
+    kpi_name: kpi_name,
+    kpi_department: kpi_department,
+    kpi_beunder: kpi_beunder,
+    kpi_subject: kpi_subject,
+    kpi_dateend: kpi_dateend,
+    kpi_datenow: kpi_datenow,
+    kpi_documentnumber: parseInt(kpi_documentnumber),
+    isActive: true,
+  });
+  res.end();
+})
+
+
+
+
+
+
 
 // ----------------View allusers ------------------------//
 
 // ----------------------------------------//
 
-//  แก้ รูปไม่ ขึ้น
+
 router.get("/view_useremp/:id", async (req, res, next) => {
   const emp_allusers = await db.collection("emp_usersall").find({}).toArray();
 
   console.log(emp_allusers);
 });
-
 router.get("/emp_allusers/", async (req, res) => {
   const emp_allusers = await db.collection("emp_usersall").find({}).toArray();
-  // const emp_img = await db.collection("emp_img").find({}).toArray();
-
   res.json(emp_allusers);
+});
+router.get("/emp_alluserscconut/", async (req, res) => {
+
+  const emp_count = await db.collection("emp_usersall").countDocuments();
+  let usercount = JSON.stringify(emp_count);
+  res.json(usercount);
+  res.end
+
   // res.json(moment);
   // console.log(emp_img);
   // res.render("pages/backend/emp_allusers", {
@@ -104,57 +141,18 @@ router.get("/emp_allusers/", async (req, res) => {
   //   moment: moment,
   // });
 });
-// ลอง ใช้ auxio
-router.get("/aox_alluser/", async (req, res) => {
-  const emp_allusers = await db.collection("emp_usersall").find({}).toArray();
+// จำกัด 10 รายการ
+router.get("/emp_alluserstenshow/", async (req, res) => {
+  const emp_allusers = await db.collection("emp_usersall").find({}).limit(10).toArray();
   res.json(emp_allusers);
-
-  // res.render("pages/backend/aox_alluser", {
-  //   title: "หน้าสร้างรายชื่อพนักงาน",
-  //   heading: "Backendadmin",
-  //   layout: "./layouts/adminbackend",
-  //   data: emp_allusers,
-  //   moment: moment,
-  // });
+  res.end
 });
-// รับ aox aox_viewalluser
-// router.get("/aox_viewalluser/", async (req, res) => {
-//   // const emp_allusers = await db.collection("emp_usersall").find({}).toArray();
-//   // res.json(emp_allusers);
-
-//   // res.render("pages/backend/aox_viewalluser", {
-//   //   title: "หน้าสร้างรายชื่อพนักงาน",
-//   //   heading: "Backendadmin",
-//   //   layout: "./layouts/adminbackend",
-//   //   // data: emp_allusers,
-//   //   moment: moment,
-//   // });
-//   axios.get('http://localhost:3000/admin/aox_alluser').then(resp => {
-//     // emp_type
-
-//     // console.log(resp.data);
-// });
-
-// });
-
-// router.get('/emp_allusers/:id', async (req, res)=>{
-
-//   const objID = new objectId(req.params.id)
-//   const emp_allusers = await db.collection('emp_usersall').find({"_id": objID}).toArray()
-
-//   res.render("pages/backend/emp_allusers", {
-//         title: "หน้าสร้างรายชื่อพนักงาน",
-//         heading: "Backendadmin",
-//         layout: "./layouts/adminbackend",
-//         data: emp_allusers,
-//         moment: moment,
-//       })
-// })
-
 // DELETE position
 router.delete("/emp_delete_position/:id/:resource", async (req, res) => {
   const objID = new objectId(req.params.id);
-  await db.collection("emp_usersall").deleteOne({ _id: objID });
+  await db.collection("emp_usersall").deleteOne({
+    _id: objID
+  });
   // console.log(objID)
   res.redirect("/admin/emp_allusers");
 });
@@ -171,6 +169,38 @@ router.delete("/emp_delete_position/:id/:resource", async (req, res) => {
 // })
 
 // delete a user in the database
+
+// --------insert data empuser------------//
+router.post('/forminsert', async (req, res) => {
+  let emp_type = req.body.emp_type;
+  let emp_id = req.body.emp_id;
+  let emp_fullname = req.body.emp_fullname;
+  let emp_start = req.body.emp_start;
+  let emp_bithday = req.body.emp_bithday;
+  let emp_status = req.body.emp_status;
+  let emp_url = req.body.emp_url;
+  // console.log(emp_type + emp_id + emp_fullname +emp_start + emp_bithday + emp_status + emp_url);
+  await db.collection("emp_usersall").insertOne({
+    emp_type: parseInt(emp_type),
+    emp_id: parseInt(emp_id),
+    emp_fullname: emp_fullname,
+    emp_start: emp_start,
+    emp_bithday: emp_bithday,
+    emp_status: parseInt(emp_status),
+    emp_url: emp_url,
+    createdateDate: new Date(),
+  });
+  res.end();
+
+});
+router.get("/emp_allusers_updatenew", async (req, res) => {
+  const emp_allusers_updatenew = await db.collection("emp_usersall").find().sort({
+    '_id': -1
+  }).limit(1).toArray();
+  res.json(emp_allusers_updatenew);
+  // console.log(emp_allusers_updatenew)
+});
+
 
 // ----------------------------------------//
 // การ insert data

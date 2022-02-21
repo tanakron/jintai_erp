@@ -29,3 +29,20 @@ new Vue({
   router,
   render: (h) => h(App),
 }).$mount("#app");
+
+const path = require("path");
+const vueSrc = "./src";
+module.exports = {
+  runtimeCompiler: true,
+  css: {
+    modules: true
+  },
+//   configureWebpack: {
+//     resolve: {
+//       alias: {
+//         "@": path.resolve(__dirname, vueSrc)
+//       },
+//       extensions: ['.js', '.vue', '.json']
+//     }
+//   }
+};
